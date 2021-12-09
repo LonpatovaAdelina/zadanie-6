@@ -1,0 +1,81 @@
+#include <iostream>
+#include <ctime>
+using namespace std;
+void print_array(int** mas, int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			cout << mas[i][j] << " ";
+		}
+		cout << endl;
+	}
+	cout << endl;
+}
+void random_array(int** mas, int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			mas[i][j] = rand() % 90 + 10;
+		}
+	}
+}
+void min(int** mas, int n)
+{
+	int i_min = 0, j_min = 0;
+	for (int i = 0; i < n; i ++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			if (mas[i][j] < mas[i_min][j_min])
+			{
+				i_min = i;
+				j_min = j;
+			}
+		}
+	}
+	cout << mas[i_min][j_min] << endl;
+	int min;
+	int t1 = 0;
+	int t2 = 0;
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			if (i != i_min && j != j_min)
+			{
+				cout << mas[i][j] << " ";
+			}
+			if (j == j_min)
+			{
+				cout << mas[i_min][t1] << " ";
+				t1 += 1;
+			}
+
+			if (i == i_min)
+			{
+				cout << mas[t2][j_min] << " ";
+				t2 += 1;
+			}
+			
+		}
+		cout << endl; 
+	}
+}
+int main()
+{
+	srand(time(0));
+	int n;
+	cin >> n;
+	int** mas = new int* [n];
+	for (int i = 0; i < n; i++)
+	{
+		mas[i] = new int[n];
+	}
+	random_array(mas, n);
+	print_array(mas, n);
+	min(mas, n);
+}
