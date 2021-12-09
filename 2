@@ -1,0 +1,87 @@
+#include <iostream>
+#include <ctime>
+using namespace std;
+void print_array(int** mas, int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			cout << mas[i][j] << " ";
+		}
+		cout << endl;
+	}
+	cout << endl;
+}
+void random_array(int** mas, int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			mas[i][j] = rand() % 10;
+		}
+	}
+}
+void print_array2(int** mas2, int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			cout << mas2[i][j] << " ";
+		}
+		cout << endl;
+	}
+	cout << endl;
+}
+void random_array2(int** mas2, int n)
+{
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			mas2[i][j] = rand() % 10;
+		}
+	}
+}
+void proizved(int** mas,int** mas2, int n)
+{
+	int** matr = new int* [n];
+	for (int i = 0; i < n; i++)
+	{
+		matr[i] = new int[n];
+	}
+	for (int i = 0; i < n; i++)
+	for (int j = 0; j < n; j++)
+	{
+		matr[i][j] = 0;
+		for (int p = 0; p < n; p++)
+		{
+			matr[i][j] += mas[i][p] * mas2[p][i];
+		}
+	}
+	print_array(matr, n);
+	
+}
+int main()
+{
+	srand(time(0));
+	int n;
+	cin >> n;
+	int** mas = new int* [n];
+	for (int i = 0; i < n; i++)
+	{
+		mas[i] = new int[n];
+	}
+	int** mas2 = new int* [n];
+	for (int i = 0; i < n; i++)
+	{
+		mas2[i] = new int[n];
+	}
+	random_array(mas, n);
+	print_array(mas, n);
+	random_array2(mas2, n);
+	print_array2(mas2, n);
+	proizved(mas,mas2,n);
+}
